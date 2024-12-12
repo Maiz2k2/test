@@ -1,18 +1,13 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main  # Trigger the pipeline on commits to the main branch
 
-pool: aks-pool
+pool:
+  name: 'aks-pool'  # Use your AKS agent pool here
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self  # Checkout the repository where hello.txt is located
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    cat hello.txt  # Read and display the contents of hello.txt
+  displayName: 'Display Contents of hello.txt'
+
